@@ -7,7 +7,8 @@ authentication, and Google Drive gallery import.
 ## Requirements
 
 - Node.js 20+ (this repo was verified on Node 24)
-- A Convex account and deployment
+- Convex: `npx convex dev` can create an anonymous local deployment with no account; a hosted
+  deployment needs a Convex account
 - A Clerk application (only needed for the admin area)
 - Google Drive OAuth credentials (only needed for gallery sync)
 
@@ -92,15 +93,15 @@ npm run lint          # ESLint
 npm run typecheck     # TypeScript, no emit
 npm test              # Vitest: Convex integration + unit tests
 npm run test:watch    # Vitest watch mode
-npm run test:e2e      # Playwright (no E2E specs yet)
+npm run test:e2e      # Playwright (no E2E specs yet; run `npx playwright install` first)
 npm run convex:dev    # Convex dev deployment
 npm run convex:deploy # Convex production deployment
 npm run convex:codegen# regenerate Convex types
 ```
 
-`npx convex codegen` requires an authenticated Convex CLI session. In this workspace it has not
-been run, so `convex/_generated/*` is a hand-written fallback with loose types. Replace it with
-real codegen output before relying on generated types. See `IMPLEMENTATION_STATUS.md`.
+`npx convex codegen` requires an authenticated Convex CLI session. The real generated types are
+committed in `convex/_generated/*`; rerun `npm run convex:codegen` after changing the schema or
+function signatures. See `IMPLEMENTATION_STATUS.md`.
 
 ## Demo seed
 

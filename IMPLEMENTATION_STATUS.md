@@ -8,14 +8,14 @@ Last updated: 2026-10-28
 | --- | --- | --- |
 | TypeScript | `npm run typecheck` | Pass |
 | ESLint | `npm run lint` | Pass (warnings only) |
-| Unit / integration | `npm test` | 21 tests passed |
+| Unit / integration | `npm test` | 22 tests passed |
 | Production build | `npm run build` | Pass, 18 routes generated |
 | End-to-end | `npm run test:e2e` | Not run; no E2E specs yet |
 
 Lint warnings that remain:
 
-- `convex/_generated/*` has unused `eslint-disable` directives because the fallback generated
-  files are not real codegen output.
+- Four unused `eslint-disable` directives in Convex's generated files (`convex/_generated/*`).
+  They are regenerated output and are left untouched.
 
 ## Implemented
 
@@ -67,9 +67,9 @@ Lint warnings that remain:
 
 These cannot be completed from the repository alone:
 
-1. **Convex deployment and codegen.** `npx convex codegen` needs an authenticated Convex CLI
-   session. Until then, `convex/_generated/*` is hand-written fallback code with loose types.
-   Run `npm run convex:codegen` and commit the real output before shipping.
+1. **Convex deployment.** Codegen output is committed in `convex/_generated/*`; rerun
+   `npm run convex:codegen` after schema or function changes. A hosted deployment still needs an
+   authenticated `npx convex deploy`.
 2. **Clerk application.** Needs a publishable key, secret key, `convex` JWT template, and
    `CLERK_JWT_ISSUER_DOMAIN` on the Convex deployment.
 3. **First admin.** Needs a real Clerk user subject and `ADMIN_BOOTSTRAP_SECRET`.
